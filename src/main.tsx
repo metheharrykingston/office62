@@ -1,238 +1,35 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
-import { ArrowRight, Building2, Check, ChevronRight, Clock3, Headphones, Mail, MapPin, MessageCircle, Monitor, PhoneCall, ShieldCheck, Sparkles, Users, Video, WalletCards } from 'lucide-react'
+import { ArrowRight, BadgeCheck, Building2, ChevronRight, Headphones, MapPin, MessageCircle, Sparkles, Users, Video } from 'lucide-react'
+import { PHONE_DISPLAY, services, wa } from './data'
+import { FAQ, Gallery, LeadForm, LocationAndFooter, Pricing, Testimonials } from './Sections'
 import './styles.css'
-
-const WHATSAPP = '919911161792'
-
-const services = [
-  { icon: Building2, title: 'Virtual Office', text: 'A professional Noida business presence without taking a full-time office.' },
-  { icon: Mail, title: 'Business Address', text: 'Receive business correspondence and keep your customer-facing address professional.' },
-  { icon: WalletCards, title: 'GST / Registered Office', text: 'Documentation-ready workspace plans, subject to eligibility and property documentation.' },
-  { icon: Headphones, title: 'BPO Seats', text: 'Ready calling desks for sales, support and outbound teams — scale seats up or down.' },
-  { icon: Users, title: 'Team Office', text: 'Flexible 3, 5, 10+ seat setups for startups, agencies and remote teams.' },
-  { icon: Video, title: 'Meeting & Interview Rooms', text: 'Book professional rooms by the hour for client meetings, interviews and presentations.' },
-  { icon: Monitor, title: 'Hot Desks', text: 'Drop in, plug in and work from Sector 63 without committing to a monthly office.' },
-  { icon: Clock3, title: 'Day / Night Shift Space', text: 'Use office capacity across shifts — ideal for operations and international calling teams.' },
-]
-
-const plans = [
-  {
-    name: 'Business Presence',
-    price: '₹999',
-    suffix: '/month',
-    note: 'Starting from',
-    features: ['Business address use', 'Mail receiving', 'Visitor-ready address', 'WhatsApp support'],
-  },
-  {
-    name: 'Working Office',
-    price: '₹4,999',
-    suffix: '/month',
-    note: 'Starting from',
-    featured: true,
-    features: ['Everything in Business Presence', 'Desk access', 'Meeting-room credits', 'Mail handling', 'Priority support'],
-  },
-  {
-    name: 'BPO / Team Seats',
-    price: 'Custom',
-    suffix: '',
-    note: 'Per seat / per shift',
-    features: ['Ready workstations', 'Internet connectivity', 'Calling-ready setup', 'Flexible seat count', 'Day/night shift options'],
-  },
-]
-
-function wa(message: string) {
-  return `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(message)}`
-}
+import './responsive.css'
 
 function App() {
-  return (
-    <main>
-      <nav className="nav shell">
-        <a className="brand" href="#top" aria-label="Office62 home">
-          <span className="brandMark">62</span>
-          <span>Office62</span>
-        </a>
-        <div className="navLinks">
-          <a href="#services">Services</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#location">Location</a>
-          <a className="navCta" href={wa('Hi, I want to know about Office62 workspace plans.')} target="_blank" rel="noreferrer">
-            WhatsApp us
-          </a>
-        </div>
-      </nav>
+  return <main className="pageShell">
+    <nav className="nav shell"><a className="brand" href="#top"><span className="brandMark">62</span><span className="brandText"><strong>Office62</strong><small>Sector 63, Noida</small></span></a><div className="navLinks"><a href="#services">Services</a><a href="#gallery">Gallery</a><a href="#plans">Plans</a><a href="#faq">FAQ</a><a className="navButton" href={wa('Hi, I want to know about Office62 workspace options.')} target="_blank" rel="noreferrer">WhatsApp Us</a></div></nav>
 
-      <section className="hero shell" id="top">
-        <div className="heroCopy">
-          <div className="eyebrow"><Sparkles size={15}/> Noida Sector 63</div>
-          <h1>Your office in Noida.<br/><span>Without the office headache.</span></h1>
-          <p className="heroText">
-            Virtual office, business address, BPO seats, flexible team space and meeting rooms — all from one professional Sector 63 location.
-          </p>
-          <div className="heroActions">
-            <a className="primary" href={wa('Hi, I want to book or enquire about an Office62 plan.')} target="_blank" rel="noreferrer">
-              Get my Noida office <ArrowRight size={18}/>
-            </a>
-            <a className="secondary" href="#services">Explore services <ChevronRight size={18}/></a>
-          </div>
-          <div className="trustRow">
-            <span><Check size={16}/> Flexible plans</span>
-            <span><Check size={16}/> Fast onboarding</span>
-            <span><Check size={16}/> Sector 63 location</span>
-          </div>
-        </div>
+    <section className="hero shell" id="top"><div className="heroLeft"><div className="eyebrow"><Sparkles size={14}/> Flexible office infrastructure in Noida</div><h1>Make your business look established in Noida — <span>without taking on a heavy office setup.</span></h1><p className="heroText">Virtual office, GST address, BPO seats, meeting rooms and flexible team workspace from C4, B-3 (Basement), Sector 63, Noida.</p><div className="heroActions"><a className="primaryButton" href={wa('Hi, I want to get started with Office62. Please guide me.')} target="_blank" rel="noreferrer">Get My Office Setup <ArrowRight size={18}/></a><a className="ghostButton" href="#services">Explore Services <ChevronRight size={18}/></a></div><div className="heroMetaRow"><span><BadgeCheck size={16}/> Fast setup</span><span><BadgeCheck size={16}/> Flexible plans</span><span><BadgeCheck size={16}/> WhatsApp-first support</span></div><div className="heroStats"><div><strong>6+</strong><span>Ways to use the office</span></div><div><strong>1–20+</strong><span>Seat flexibility</span></div><div><strong>Day / Night</strong><span>Shift-friendly usage</span></div></div></div><div className="heroRight"><div className="heroCard heroLeadCard"><div className="cardTopline">Workspace at a glance</div><h3>What do you need today?</h3><div className="quickGrid">{['Virtual Office','GST Address','BPO Seats','Meeting Room','Team Office','Hot Desk'].map((item,index)=><a key={item} href={wa(`Hi, I am interested in ${item} at Office62.`)} target="_blank" rel="noreferrer"><span>{String(index+1).padStart(2,'0')}</span><b>{item}</b><ArrowRight size={15}/></a>)}</div><div className="officeMiniCard"><div><small>Location</small><strong>C4, B-3 (Basement), Sector 63, Noida</strong></div><MapPin size={18}/></div></div><div className="heroCard heroNoteCard"><div className="noteHeader"><MessageCircle size={18}/><span>Fastest way to enquire</span></div><p>Tell us your requirement and we’ll suggest the simplest option — address, seats, or a full team setup.</p><a className="inlineLink" href={wa('Hi Office62, please recommend the right plan for me.')} target="_blank" rel="noreferrer">Chat now <ArrowRight size={15}/></a></div></div></section>
 
-        <div className="heroPanel">
-          <div className="availability">
-            <span className="dot"></span>
-            Spaces available
-          </div>
-          <h3>What do you need?</h3>
-          <div className="needGrid">
-            {['Virtual office','GST address','BPO seats','Meeting room','Team office','Hot desk'].map((item, i) => (
-              <a key={item} href={wa(`Hi, I am interested in ${item} at Office62.`)} target="_blank" rel="noreferrer">
-                <span>{String(i+1).padStart(2,'0')}</span>{item}<ArrowRight size={16}/>
-              </a>
-            ))}
-          </div>
-          <p className="micro">Tell us your requirement. We’ll recommend the simplest plan.</p>
-        </div>
-      </section>
+    <section className="floatingStrip shell"><div><Building2 size={18}/> Virtual Office</div><div><Headphones size={18}/> BPO Seats</div><div><Video size={18}/> Meeting Rooms</div><div><Users size={18}/> Team Workspace</div></section>
 
-      <section className="ticker">
-        <div className="shell tickerInner">
-          <span>VIRTUAL OFFICE</span><i>•</i><span>BPO SEATS</span><i>•</i><span>MEETING ROOMS</span><i>•</i><span>TEAM OFFICES</span><i>•</i><span>BUSINESS ADDRESS</span>
-        </div>
-      </section>
+    <section className="section shell" id="services"><div className="sectionHeader"><div><div className="eyebrow">Services</div><h2>Everything around a practical business base.</h2></div><p>Office62 is designed so the same location can serve a solo founder, a growing team, or an active calling operation.</p></div><div className="servicesGrid">{services.map(({icon:Icon,title,text})=><article className="serviceCard" key={title}><div className="serviceIcon"><Icon size={20}/></div><h3>{title}</h3><p>{text}</p><a href={wa(`Hi, tell me more about ${title}.`)} target="_blank" rel="noreferrer">Enquire Now <ArrowRight size={15}/></a></article>)}</div></section>
 
-      <section className="section shell" id="services">
-        <div className="sectionHead">
-          <div>
-            <div className="eyebrow">One office. Multiple ways to use it.</div>
-            <h2>Start small. Scale when you need to.</h2>
-          </div>
-          <p>Choose only what your business needs today. Add desks, rooms or a larger setup later.</p>
-        </div>
+    <Gallery/>
 
-        <div className="services">
-          {services.map(({icon: Icon, title, text}) => (
-            <article className="serviceCard" key={title}>
-              <div className="icon"><Icon size={21}/></div>
-              <h3>{title}</h3>
-              <p>{text}</p>
-              <a href={wa(`Hi, tell me more about ${title}.`)} target="_blank" rel="noreferrer">Enquire <ArrowRight size={15}/></a>
-            </article>
-          ))}
-        </div>
-      </section>
+    <section className="darkSection"><div className="shell darkWrap"><div className="darkCopy"><div className="eyebrow darkEyebrow">Built for operators and teams</div><h2>Need calling seats or a flexible team setup? Turn idle office capacity into usable inventory.</h2><p>Use the same office as a virtual office, meeting space, hot-desk hub or ready BPO workspace instead of letting it sit empty.</p><a className="lightButton" href={wa('Hi, I need BPO seats or a team workspace. Please share options.')} target="_blank" rel="noreferrer">Check Availability <ArrowRight size={18}/></a></div><div className="darkPanel"><div><strong>1–20+</strong><span>Flexible seat counts</span></div><div><strong>Fast</strong><span>Operational setup</span></div><div><strong>Day / Night</strong><span>Shift-friendly usage</span></div><div><strong>Sector 63</strong><span>Noida business zone</span></div></div></div></section>
 
-      <section className="darkSection">
-        <div className="shell split">
-          <div>
-            <div className="eyebrow darkEyebrow">Built for operators</div>
-            <h2>Need 6 calling seats next week? Done.</h2>
-            <p className="largeP">Skip the furniture, internet setup and long leases. Bring your people and start operating from a ready workspace.</p>
-            <a className="lightButton" href={wa('Hi, I need BPO/calling seats. Please share availability.')} target="_blank" rel="noreferrer">
-              Check BPO seat availability <ArrowRight size={18}/>
-            </a>
-          </div>
-          <div className="statGrid">
-            <div><strong>1–20+</strong><span>Flexible seats</span></div>
-            <div><strong>Day / Night</strong><span>Shift options</span></div>
-            <div><strong>Fast</strong><span>Operational setup</span></div>
-            <div><strong>Sector 63</strong><span>Noida business hub</span></div>
-          </div>
-        </div>
-      </section>
+    <Pricing/>
+    <Testimonials/>
+    <LeadForm/>
+    <FAQ/>
+    <LocationAndFooter/>
 
-      <section className="section shell" id="pricing">
-        <div className="sectionHead">
-          <div>
-            <div className="eyebrow">Simple starting plans</div>
-            <h2>Pay for presence. Upgrade for workspace.</h2>
-          </div>
-          <p>Final pricing can vary by documentation, seat count, duration and room usage.</p>
-        </div>
+    <section className="ctaSection"><div className="shell ctaWrap"><div><div className="eyebrow darkEyebrow">Ready when you are</div><h2>Tell us what kind of office setup you need.</h2><p>We’ll help you choose the most practical option and move fast from enquiry to setup.</p></div><a className="ctaButton" href={wa('Hi Office62, I want to discuss my office requirement.')} target="_blank" rel="noreferrer"><MessageCircle size={20}/> Talk on WhatsApp <ArrowRight size={18}/></a></div></section>
 
-        <div className="plans">
-          {plans.map(plan => (
-            <article className={`plan ${plan.featured ? 'featured' : ''}`} key={plan.name}>
-              {plan.featured && <div className="popular">MOST FLEXIBLE</div>}
-              <div className="planNote">{plan.note}</div>
-              <h3>{plan.name}</h3>
-              <div className="price">{plan.price}<span>{plan.suffix}</span></div>
-              <ul>
-                {plan.features.map(f => <li key={f}><Check size={16}/>{f}</li>)}
-              </ul>
-              <a href={wa(`Hi, I am interested in the ${plan.name} plan.`)} target="_blank" rel="noreferrer">
-                Get this plan <ArrowRight size={17}/>
-              </a>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="section shell launch">
-        <div className="launchCard">
-          <div>
-            <div className="eyebrow">For companies entering Delhi NCR</div>
-            <h2>Noida Launch Office</h2>
-            <p>Get a professional NCR presence, mail handling, meeting-room access and workspace credits without building a new office from scratch.</p>
-          </div>
-          <div className="launchList">
-            <span><ShieldCheck size={18}/> Business presence</span>
-            <span><Mail size={18}/> Mail handling</span>
-            <span><Users size={18}/> Workspace access</span>
-            <span><PhoneCall size={18}/> Local operating base</span>
-          </div>
-          <a className="primary" href={wa('Hi, tell me about the Noida Launch Office package.')} target="_blank" rel="noreferrer">
-            Launch in Noida <ArrowRight size={18}/>
-          </a>
-        </div>
-      </section>
-
-      <section className="section shell" id="location">
-        <div className="locationCard">
-          <div className="mapMock">
-            <div className="mapPin"><MapPin size={26}/></div>
-            <div className="road r1"></div><div className="road r2"></div><div className="road r3"></div>
-          </div>
-          <div className="locationCopy">
-            <div className="eyebrow">Location</div>
-            <h2>C4, B-3 (Basement), Sector 63, Noida</h2>
-            <p>Build your Noida business presence from C4, B-3 (Basement), Sector 63 — a practical base for virtual office, BPO and flexible workspace requirements.</p>
-            <div className="addressPlaceholder"><strong>C4, B-3 (Basement)</strong><span>Sector 63, Noida, Uttar Pradesh</span></div>
-            <a className="secondary" href={wa('Hi, I want to schedule a visit to C4, B-3 (Basement), Sector 63, Noida. Please share available timings.')} target="_blank" rel="noreferrer">
-              Schedule a visit <ChevronRight size={18}/>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section className="cta">
-        <div className="shell ctaInner">
-          <div>
-            <div className="eyebrow darkEyebrow">Ready when you are</div>
-            <h2>Tell us what kind of office you need.</h2>
-            <p>We’ll help you choose the simplest option — from an address to a complete operating team space.</p>
-          </div>
-          <a className="waBig" href={wa('Hi Office62, I want to discuss my office requirement.')} target="_blank" rel="noreferrer">
-            <MessageCircle size={21}/> Talk on WhatsApp <ArrowRight size={19}/>
-          </a>
-        </div>
-      </section>
-
-      <footer className="footer shell">
-        <div className="brand"><span className="brandMark">62</span><span>Office62</span></div>
-        <p>Flexible business presence & workspace in Noida Sector 63.</p>
-        <p className="legal">GST/registered office availability is subject to eligibility, lease permissions and required documentation.</p>
-      </footer>
-      <a className="mobileWhatsApp" href={wa('Hi Office62, I want to discuss my office requirement.')} target="_blank" rel="noreferrer">
-        <MessageCircle size={20}/> WhatsApp us <ArrowRight size={18}/>
-      </a>
-    </main>
-  )
+    <a className="mobileBar" href={wa('Hi Office62, I want to discuss my office requirement.')} target="_blank" rel="noreferrer"><MessageCircle size={19}/> WhatsApp Office62 · {PHONE_DISPLAY} <ArrowRight size={17}/></a>
+  </main>
 }
 
-createRoot(document.getElementById('root')!).render(<App />)
+createRoot(document.getElementById('root')!).render(<App/>)
